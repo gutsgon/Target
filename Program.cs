@@ -99,7 +99,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Conexões HTTPS
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 // Adiciona a autenticação a aplicação
 app.UseAuthentication();
