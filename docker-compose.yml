@@ -1,4 +1,3 @@
-
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -21,13 +20,8 @@ services:
         condition: service_healthy
     ports:
       - "5068:80"
+    env_file:
+      - .env
     environment:
-      # Carrega variáveis do arquivo .env (coloque .env na pasta src)
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=TargetDb;User Id=sa;Password=Password;TrustServerCertificate=True;
-      - AUTH_USERNAME=${AUTH_USERNAME}
-      - AUTH_PASSWORD=${AUTH_PASSWORD}
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_ISSUER=${JWT_ISSUER}
-      - JWT_AUDIENCE=${JWT_AUDIENCE}
-
