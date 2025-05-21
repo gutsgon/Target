@@ -14,5 +14,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
-EXPOSE 80
+EXPOSE 5068
 ENTRYPOINT ["dotnet", "Target.dll"]
