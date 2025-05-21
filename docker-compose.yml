@@ -19,7 +19,7 @@ services:
       sqlserver:
         condition: service_healthy
     ports:
-      - "5068:80"
+      - "5068:5068"
     env_file:
       - .env
     environment:
