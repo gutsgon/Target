@@ -2,19 +2,19 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: "Password"
+      SA_PASSWORD: "P@ssw0rd123!"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
     healthcheck:
-      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-U", "sa", "-P", "Password", "-Q", "SELECT 1" ]
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-U", "sa", "-P", "P@ssw0rd123!", "-Q", "SELECT 1" ]
       interval: 10s
       retries: 5
 
   api:
     build:
       context: .
-      dockerfile: Target/Dockerfile
+      dockerfile: ./Dockerfile
     depends_on:
       sqlserver:
         condition: service_healthy
@@ -24,4 +24,4 @@ services:
       - .env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=TargetDb;User Id=sa;Password=Password;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=TargetDb;User Id=sa;Password=P@ssw0rd123!;TrustServerCertificate=True;
