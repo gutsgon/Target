@@ -4,7 +4,7 @@ WORKDIR /src
 
 # Copiar solução e projetos
 COPY ./Target.sln ./
-COPY ./Target/*.csproj ./Target/
+COPY ./*.csproj ./Target/
 
 # Restaurar dependências
 RUN dotnet restore
