@@ -1,19 +1,16 @@
 # Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /src
+WORKDIR /app
 
-# Copiar solução e projetos
-COPY ./Target.sln ./
-COPY ./*.csproj ./Target/
+# Copiar arquivos do projeto
+COPY Target.sln ./
+COPY Target.csproj ./
+COPY . ./
 
-# Restaurar dependências
+# Restaurar pacotes
 RUN dotnet restore
 
-# Copiar todo o restante do código
-COPY . .
-
-# Publicar aplicação
-WORKDIR /src/Target
+# Publicar o projeto
 RUN dotnet publish -c Release -o /app/publish
 
 # Etapa de runtime
