@@ -2,13 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-# Copiar arquivos do projeto
+# Copiar arquivos do projeto e restaurar pacotes
 COPY Target.sln ./
 COPY Target.csproj ./
-COPY . ./
-
-# Restaurar pacotes
 RUN dotnet restore
+
+# Copiar arquivos restantes do projeto
+COPY . ./
 
 # Publicar o projeto
 RUN dotnet publish -c Release -o /app/publish
